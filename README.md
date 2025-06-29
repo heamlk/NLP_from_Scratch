@@ -18,10 +18,16 @@ A walkthrough of an NLP character-level Recurrent Neural Network (RNN) and trans
 - Python 3 should be installed (I'm using Python 3.11 at the start of this project), which you can download here: https://www.python.org/downloads/
 - A virtual environment created with a tool such as `venv` (I'm using it for this project), which you can learn how to set up here: https://packaging.python.org/en/latest/guides/installing-using-pip-and-virtual-environments/
 
+## Quickrun Pretrained RNN Model
+If you'd like to quickly see the results from a pretrained RNN model, run the following command with a first or last name as the argument the RNN model already "`pretrained`", replacing "`<First or Last Name>`".
+```bash
+python main.py <First or Last Name> pretrained=true
+```
+
 ## Setup Option A: Quickstart
 If you have Python installed and are using a macOS or Linux machine, you can run the following script to create a `.venv` folder for your local virtual environment with the following command:
 ```bash
-source setup.sh
+source scripts/setup.sh
 ```
 
 ## Setup Option B: Manual Project Setup
@@ -50,7 +56,7 @@ make run
 ```
 ### Run the entire pipeline 
 ```bash
-source make.sh
+source scripts/make.sh
 ```
 *Note: A Shell script is needed since new files are added to the system on the `make download` step and the process will only detect these changes during `make run` with a script like Shell not Make.*
 

@@ -27,10 +27,10 @@ install:
 	pip install -r requirements.txt
 
 # Run the model pipeline
-run: preprocess train evaluate visualize
+run: visualize
 
 # Run all: Run the model pipeline
-all: download preprocess train evaluate visualize
+all: download visualize
 
 #----------------------------------------
 # Cleaning folders

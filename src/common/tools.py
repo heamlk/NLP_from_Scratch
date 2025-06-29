@@ -5,6 +5,7 @@ import yaml
 import unicodedata
 import string
 import torch
+import os
 
 device = torch.device("cuda"
                       if torch.cuda.is_available()
@@ -69,3 +70,9 @@ def load_config():
     with open('config.yaml', 'r') as f:
         config = yaml.safe_load(f)
     return config
+
+# TODO: Fix argument weights_only erroring when True
+model = torch.load('nlp_from_scratch/models/model.pth' 
+                   if os.path.exists('nlp_from_scratch/models/model.pth') 
+                   else 'models/model.pth', 
+                   weights_only=False)

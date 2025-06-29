@@ -1,18 +1,20 @@
 import matplotlib.pyplot as plt
 import matplotlib.ticker as ticker
 import numpy as np
+import sys
 
 import src.preprocess.dataset as dataset
 import src.evaluate.evaluate as evaluate
 
 
-def visualize(confusion, classes):
+def visualize(classes, pretrained=False, name="Preston"):
 
     # Set up plot
     fig = plt.figure()
     ax = fig.add_subplot(111)
+    
     # NumPy uses CPU here so we need to use a CPU version
-    cax = ax.matshow(confusion.cpu().numpy())
+    cax = ax.matshow(evaluate.confusion_matrix(pretrained, name).cpu().numpy())
     fig.colorbar(cax)
 
     # Set up axes
@@ -24,12 +26,10 @@ def visualize(confusion, classes):
     ax.yaxis.set_major_locator(ticker.MultipleLocator(1))
 
     # Set up title
-    plt.title("Languages the RNN Guessed Correctly")
+    plt.title(f"Languages the RNN Guessed Correctly for the name {name}")
 
     plt.savefig("reports/figures/confusion.png")
     
     plt.show()
 
-
-
-visualize(evaluate.confusion, classes=dataset.alldata.labels_uniq)
+visualize(classes=dataset.alldata.labels_uniq) if "visualize" in sys.argv else None
